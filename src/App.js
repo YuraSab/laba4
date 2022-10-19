@@ -6,8 +6,10 @@ const App = () => {
     const [fileText, setFileText] = useState('');
     console.log(fileText)
 
-    let newFileMas = [];
-    console.log(newFileMas);
+    // let newFileMas = [];
+    const [newFileMas, setNewFileMas] = useState([]);
+
+    console.log("newFileMas", newFileMas);
 
     const coddingMessage = "01101011";
 
@@ -28,9 +30,8 @@ const App = () => {
 
     const decoded = () => {
 
-
         let pair = 0;
-
+        let localFileMas = [];
 
         for (let i = 0; i < fileText.length; i += 8) {
             console.log("i", i);
@@ -44,15 +45,15 @@ const App = () => {
             let sevenValue = coddingMessage[pair];
             let eightValue = coddingMessage[pair + 1];
 
-            newFileMas.push(oneValue);
-            newFileMas.push(twoValue);
-            newFileMas.push(threeValue);
-            newFileMas.push(fourValue);
-            newFileMas.push(fiveValue);
-            newFileMas.push(sixValue);
-            newFileMas.push(sevenValue);
-            newFileMas.push(eightValue);
 
+            localFileMas.push(oneValue);
+            localFileMas.push(twoValue);
+            localFileMas.push(threeValue);
+            localFileMas.push(fourValue);
+            localFileMas.push(fiveValue);
+            localFileMas.push(sixValue);
+            localFileMas.push(sevenValue);
+            localFileMas.push(eightValue);
 
             console.log("pair", pair);
             if (pair !== 6) {
@@ -61,6 +62,9 @@ const App = () => {
                 pair = 0;
             }
         }
+        setNewFileMas(localFileMas);
+
+
     }
 
 
@@ -82,12 +86,25 @@ const App = () => {
                     <div className={'mainGrid'}>
                         <div className={'gridStart'}>
                             {
-                                fileText
+                                fileText ? <b>{fileText}</b> : null
                             }
                         </div>
                         <div className={'gridEnd'}>
+                            {/*{*/}
+                            {/*    newFileMas.map(value => <div>value.value</div> )*/}
+                            {/*}*/}
                             {
-                                newFileMas.map(value => value.value)
+                                newFileMas ? (
+
+                                    newFileMas.map(value => {
+                                            return (
+                                                <b>
+                                                    {value.valueOf()}
+                                                </b>
+                                            )
+                                        }
+                                    )
+                                ) : null
                             }
                         </div>
                     </div>

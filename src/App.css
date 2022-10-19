@@ -8,8 +8,10 @@
 
 .gridStart{
         grid-area: start;
+    background: lightblue;
 }
 
 .gridEnd{
         grid-area: end;
+    background: teal;
 }
