@@ -6,12 +6,10 @@ const App = () => {
     const [fileText, setFileText] = useState('');
     console.log(fileText)
 
-    // let newFileMas = [];
     const [newFileMas, setNewFileMas] = useState([]);
 
     console.log("newFileMas", newFileMas);
 
-    // const coddingMessage = "01101011";
     const [coddingMessage, setCoddingMessage] = useState("01101011");
     const [chosen, setChosen] = useState(false);
 
@@ -65,11 +63,21 @@ const App = () => {
             }
         }
         setNewFileMas(localFileMas);
-
-
     }
 
+    // const [key, setKey] = useState("01101011");
+    const settingKey = () => {
+        let key = document.getElementById("num");
+        let value = key.value;
+        console.log(value);
 
+        if (value.length === 8) {
+            setCoddingMessage(value);
+            setFileText("");
+            setNewFileMas([]);
+            console.log('sfa')
+        }
+    }
 
     return (
         <div>
@@ -81,6 +89,29 @@ const App = () => {
                     className={"getFile"}
                     onInput={() => setChosen(true)}
                 />
+
+                <div className={"setKey"}>
+                    <input
+                        id="num"
+                        // type="number"
+                        min="0" max="1"
+                        name="num"
+                        maxLength="8"
+                        onChange={(e) => {
+                            e.target.value = e.target.value.replace(/[^0-1]/g, '');
+                            // .replace(/(.{4})/g, '$1 ').trim()
+                            // setKey(e.target.value);
+                        }}
+                        style={{height: 35, fontSize: 20}}
+                    />
+                    <button
+                        onClick={settingKey}
+                        className={"buttonForm"}
+                    >
+                        Set key
+                    </button>
+                </div>
+
 
                 <button
                     onClick={readFile}
@@ -99,7 +130,6 @@ const App = () => {
             </div>
 
 
-
             {
                 fileText ? (
                     <div className={'mainGrid'}>
@@ -113,10 +143,10 @@ const App = () => {
                             {
                                 newFileMas ? (
 
-                                    newFileMas.map(value => {
+                                    newFileMas.map((value, index) => {
                                             return (
 
-                                                <b>
+                                                <b key={index}>
                                                     {value.valueOf()}
                                                 </b>
                                             )
