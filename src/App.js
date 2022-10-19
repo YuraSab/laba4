@@ -11,8 +11,9 @@ const App = () => {
 
     console.log("newFileMas", newFileMas);
 
-    const coddingMessage = "01101011";
-
+    // const coddingMessage = "01101011";
+    const [coddingMessage, setCoddingMessage] = useState("01101011");
+    const [chosen, setChosen] = useState(false);
 
     const readFile = () => {
         let file = document.getElementById('file').files[0];
@@ -25,6 +26,7 @@ const App = () => {
         reader.onerror = function () {
             console.log(reader.error);
         }
+        setNewFileMas([]);
     }
 
 
@@ -68,18 +70,35 @@ const App = () => {
     }
 
 
+
     return (
         <div>
-            <input
-                type={'file'}
-                id={'file'}
-            />
-            <button onClick={readFile}>
-                Read file
-            </button>
-            <button onClick={decoded}>
-                Codding
-            </button>
+
+            <div className={'formDiv'}>
+                <input
+                    type={'file'}
+                    id={'file'}
+                    className={"getFile"}
+                    onInput={() => setChosen(true)}
+                />
+
+                <button
+                    onClick={readFile}
+                    className={"buttonForm"}
+                    disabled={!chosen}
+                >
+                    Read file
+                </button>
+                <button
+                    onClick={decoded}
+                    className={"buttonForm"}
+                    disabled={!fileText}
+                >
+                    Codding
+                </button>
+            </div>
+
+
 
             {
                 fileText ? (
@@ -89,15 +108,14 @@ const App = () => {
                                 fileText ? <b>{fileText}</b> : null
                             }
                         </div>
+
                         <div className={'gridEnd'}>
-                            {/*{*/}
-                            {/*    newFileMas.map(value => <div>value.value</div> )*/}
-                            {/*}*/}
                             {
                                 newFileMas ? (
 
                                     newFileMas.map(value => {
                                             return (
+
                                                 <b>
                                                     {value.valueOf()}
                                                 </b>

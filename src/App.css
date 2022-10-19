@@ -1,4 +1,4 @@
-.mainGrid{
+.mainGrid {
     width: 100%;
     display: grid;
     grid-template-areas:
@@ -6,12 +6,49 @@
     grid-template-columns: 50% 50%;
 }
 
-.gridStart{
-        grid-area: start;
+.gridStart {
+    grid-area: start;
     background: lightblue;
+    padding: 40px;
+    border-right: 3px solid black;
 }
 
-.gridEnd{
-        grid-area: end;
-    background: teal;
+.gridEnd {
+    grid-area: end;
+    background: lightblue;
+    padding: 40px;
+    border-left: 3px solid black;
 }
+
+
+.formDiv {
+    background: lightblue;
+    padding: 75px;
+    display: flex;
+    gap: 50px;
+    border-bottom: 5px solid black;
+}
+
+.buttonForm {
+    width: 150px;
+    height: 40px;
+    border-radius: 4px;
+    border: 4px black solid;
+    background: white;
+    font-size: 20px;
+}
+
+.getFile {
+    font: 1rem/1.5 "PT Sans", Arial, sans-serif;
+    color: #5a5a5a;
+    height: 40px;
+    width: 300px;
+}
+
+.getFile:before,
+.getFile:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
